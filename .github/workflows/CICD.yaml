@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
     
       - name: printing the html content
-        run: cat index.html
+        run: cat index.html  
 
       - name: upload-artifact
         id: upload
@@ -24,18 +24,22 @@ jobs:
           name: downloaded-artifact
           path: index.html
 
+      - name: Print Artifact ID
+        run: |
+          echo "Artifact ID = ${{ steps.upload.outputs.artifact-id }}"    
+
       - name: Trigger REPO_B
         run: |
-          curl -X POST \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: token ${{ secrets.GIT_CROSS_REPO_TOKEN }}" \
+           curl -X POST \
+           -H "Accept: application/vnd.github+json" \
+           -H "Authorization: token ${{ secrets.GIT_CROSS_REPO_TOKEN }}" \
            https://api.github.com/repos/Devtoolllllllllll/REPO_B/dispatches \
            -d '{
            "event_type":"artifact-ready",
            "client_payload":{
            "artifact_id":"${{ steps.upload.outputs.artifact-id }}"
-             }
-            }'  
+            }
+           }'  
               
  
    
