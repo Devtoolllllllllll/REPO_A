@@ -10,7 +10,6 @@ jobs:
   build:
     runs-on: self-hosted 
     steps:
-    
       - name: printing the html content
         run: cat index.html
 
