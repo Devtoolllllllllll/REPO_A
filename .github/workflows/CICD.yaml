@@ -1,5 +1,6 @@
 name: workflow_1
-on: workflow_dispatch
+on: 
+  push
 jobs:
   code_checkout:
     runs-on: ubuntu-latest
