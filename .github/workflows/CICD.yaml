@@ -1,17 +1,25 @@
 name: workflow_1
-on: 
-  push
+on: push
 jobs:
   code_checkout:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: code checkout
         uses: actions/checkout@v4
 
+  build:
+    runs-on: self-hosted 
+    steps:
       - name: printing the html content
         run: cat index.html
 
-
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: downloaded-artifact
+          path: index.html
+        
+              
  
    
 
