@@ -28,8 +28,13 @@ jobs:
           curl -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: token ${{ secrets.GIT_CROSS_REPO_TOKEN }}" \
-          https://api.github.com/repos/Devtoolllllllllll/REPO_B/dispatches \
-          -d '{"event_type":"artifact-ready"}'  
+           https://api.github.com/repos/Devtoolllllllllll/REPO_B/dispatches \
+           -d '{
+           "event_type":"artifact-ready",
+           "client_payload":{
+           "artifact_id":"${{ steps.upload.outputs.artifact-id }}"
+             }
+            }'  
               
  
    
